@@ -62,11 +62,12 @@ type Provider struct {
 }
 
 type claims struct {
-	Email             string                   `json:"email"`
-	Name              string                   `json:"name"`
-	PreferredUsername string                   `json:"preferred_username"`
-	Nickname          string                   `json:"nickname"`
-	VikunjaGroups     []map[string]interface{} `json:"vikunja_groups"`
+	Email              string                   `json:"email"`
+	Name               string                   `json:"name"`
+	PreferredUsername  string                   `json:"preferred_username"`
+	Nickname           string                   `json:"nickname"`
+	VikunjaGroups      []map[string]interface{} `json:"vikunja_groups"`
+	ExtraSettingsLinks map[string]any           `json:"extra_settings_links"`
 }
 
 func init() {
@@ -262,13 +263,15 @@ func getOrCreateUser(s *xorm.Session, cl *claims, provider *Provider, idToken *o
 
 		// If no user exists, create one with the preferred username if it is not already taken
 		uu := &user.User{
-			Username: strings.ReplaceAll(cl.PreferredUsername, " ", "-"),
-			Email:    cl.Email,
-			Name:     cl.Name,
-			Status:   user.StatusActive,
-			Issuer:   idToken.Issuer,
-			Subject:  idToken.Subject,
+			Username:           strings.ReplaceAll(cl.PreferredUsername, " ", "-"),
+			Email:              cl.Email,
+			Name:               cl.Name,
+			Status:             user.StatusActive,
+			Issuer:             idToken.Issuer,
+			Subject:            idToken.Subject,
+			ExtraSettingsLinks: cl.ExtraSettingsLinks,
 		}
+
 		return auth.CreateUserWithRandomUsername(s, uu)
 	} else if alreadyCreatedFromIssuer {
 
@@ -279,6 +282,9 @@ func getOrCreateUser(s *xorm.Session, cl *claims, provider *Provider, idToken *o
 		if cl.Name != u.Name {
 			u.Name = cl.Name
 		}
+
+		u.ExtraSettingsLinks = cl.ExtraSettingsLinks
+
 		u, err = user.UpdateUser(s, u, false)
 		if err != nil {
 			return nil, err
