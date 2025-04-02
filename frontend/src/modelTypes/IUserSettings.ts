@@ -16,6 +16,15 @@ export interface IFrontendSettings {
 	minimumPriority: Priority
 }
 
+export interface IExtraSettingsLink {
+	text: string
+	url: string
+}
+
+export interface IExtraSettingsLinks {
+	[key: string]: IExtraSettingsLink
+}
+
 export interface IUserSettings extends IAbstract {
 	name: string
 	emailRemindersEnabled: boolean
@@ -28,4 +37,5 @@ export interface IUserSettings extends IAbstract {
 	timezone: string
 	language: SupportedLocale | null
 	frontendSettings: IFrontendSettings
+	extraSettingsLinks: IExtraSettingsLinks
 }
