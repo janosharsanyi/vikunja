@@ -231,7 +231,7 @@ const taskService = shallowReactive(new TaskService())
 const relatedTasks = ref<ITask['relatedTasks']>({})
 
 const newTaskRelation: TaskRelation = reactive({
-	kind: RELATION_KIND.RELATED,
+	kind: RELATION_KIND.SUBTASK,
 	task: new TaskModel(),
 })
 
