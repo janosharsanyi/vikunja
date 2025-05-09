@@ -1,4 +1,4 @@
-# syntax=docker/dockerfile:1@sha256:4c68376a702446fc3c79af22de146a148bc3367e73c25a5803d453b6b3f722fb
+# syntax=docker/dockerfile:1@sha256:9857836c9ee4268391bb5b09f9f157f3c91bb15821bb77969642813b0d00518d
 FROM --platform=$BUILDPLATFORM node:22.15.0-alpine@sha256:ad1aedbcc1b0575074a91ac146d6956476c1f9985994810e4ee02efd932a68fd AS frontendbuilder
 
 WORKDIR /build
@@ -13,7 +13,7 @@ RUN npm install -g corepack && corepack enable && \
       pnpm install && \
       pnpm run build
 
-FROM --platform=$BUILDPLATFORM ghcr.io/techknowlogick/xgo:go-1.23.x@sha256:46a34792b019ee60cb16d0f2ec464dbd69fde843e485203c4f65258bde4fe7e2 AS apibuilder
+FROM --platform=$BUILDPLATFORM ghcr.io/techknowlogick/xgo:go-1.23.x@sha256:d45f463381d025efa2fa0fb8617d2b04694e650bfd5d206ae1ef13d0c78fdea6 AS apibuilder
 
 RUN go install github.com/magefile/mage@latest && \
     mv /go/bin/mage /usr/local/go/bin
@@ -25,7 +25,6 @@ COPY --from=frontendbuilder /build/dist ./frontend/dist
 ARG TARGETOS TARGETARCH TARGETVARIANT RELEASE_VERSION
 ENV RELEASE_VERSION=$RELEASE_VERSION
 
-ENV GOPROXY=https://goproxy.kolaente.de
 RUN export PATH=$PATH:$GOPATH/bin && \
 	mage build:clean && \
     mage release:xgo "${TARGETOS}/${TARGETARCH}/${TARGETVARIANT}"

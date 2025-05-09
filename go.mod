@@ -17,7 +17,7 @@
 module code.vikunja.io/api
 
 require (
-	dario.cat/mergo v1.0.1
+	dario.cat/mergo v1.0.2
 	github.com/ThreeDotsLabs/watermill v1.4.6
 	github.com/adlio/trello v1.12.0
 	github.com/arran4/golang-ical v0.3.2
@@ -42,7 +42,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/hashicorp/go-version v1.7.0
 	github.com/hhsnopek/etag v0.0.0-20171206181245-aea95f647346
-	github.com/huandu/go-clone/generic v1.7.2
+	github.com/huandu/go-clone/generic v1.7.3
 	github.com/iancoleman/strcase v0.3.0
 	github.com/jinzhu/copier v0.4.0
 	github.com/jszwedko/go-datemath v0.1.1-0.20230526204004-640a500621d6
@@ -57,7 +57,7 @@ require (
 	github.com/op/go-logging v0.0.0-20160315200505-970db520ece7
 	github.com/pquerna/otp v1.4.0
 	github.com/prometheus/client_golang v1.22.0
-	github.com/redis/go-redis/v9 v9.7.3
+	github.com/redis/go-redis/v9 v9.8.0
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/samedi/caldav-go v3.0.0+incompatible
 	github.com/spf13/afero v1.14.0
@@ -71,13 +71,13 @@ require (
 	github.com/ulule/limiter/v3 v3.11.2
 	github.com/wneessen/go-mail v0.6.2
 	github.com/yuin/goldmark v1.7.11
-	golang.org/x/crypto v0.37.0
-	golang.org/x/image v0.26.0
-	golang.org/x/oauth2 v0.29.0
-	golang.org/x/sync v0.13.0
-	golang.org/x/sys v0.32.0
-	golang.org/x/term v0.31.0
-	golang.org/x/text v0.24.0
+	golang.org/x/crypto v0.38.0
+	golang.org/x/image v0.27.0
+	golang.org/x/oauth2 v0.30.0
+	golang.org/x/sync v0.14.0
+	golang.org/x/sys v0.33.0
+	golang.org/x/term v0.32.0
+	golang.org/x/text v0.25.0
 	gopkg.in/d4l3k/messagediff.v1 v1.2.1
 	mvdan.cc/xurls/v2 v2.6.0
 	src.techknowlogick.com/xgo v1.8.1-0.20241105013731-313dedef864f
@@ -139,7 +139,7 @@ require (
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
-	github.com/huandu/go-clone v1.6.0 // indirect
+	github.com/huandu/go-clone v1.7.3 // indirect
 	github.com/inconshreveable/mousetrap v1.1.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
@@ -214,4 +214,4 @@ replace github.com/labstack/echo/v4 => github.com/kolaente/echo/v4 v4.0.0-202501
 
 go 1.23.0
 
-toolchain go1.24.2
+toolchain go1.24.3
