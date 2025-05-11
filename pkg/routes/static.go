@@ -18,6 +18,7 @@ package routes
 
 import (
 	"bytes"
+	"code.vikunja.io/api/pkg/models"
 	"errors"
 	"fmt"
 	"io"
@@ -50,6 +51,7 @@ const (
 	window.SENTRY_DSN = '{{ .SENTRY_DSN }}'
 	window.ALLOW_ICON_CHANGES = {{ .ALLOW_ICON_CHANGES }}
 	window.CUSTOM_LOGO_URL = '{{ .CUSTOM_LOGO_URL }}'
+	window.DEFAULT_NEW_TASK_RELATION_KIND = '{{ .DEFAULT_NEW_TASK_RELATION_KIND }}'
 </script>`
 )
 
@@ -96,6 +98,11 @@ func serveIndexFile(c echo.Context, assetFs http.FileSystem) (err error) {
 			data["ALLOW_ICON_CHANGES"] = "true"
 		}
 		data["CUSTOM_LOGO_URL"] = config.ServiceCustomLogoURL.GetString()
+		data["DEFAULT_NEW_TASK_RELATION_KIND"] = string(models.RelationKindRelated)
+		defaultRelationKind := config.DefaultNewTaskRelationKind.GetString()
+		if models.RelationKind(defaultRelationKind).IsValid() {
+			data["DEFAULT_NEW_TASK_RELATION_KIND"] = defaultRelationKind
+		}
 
 		err = tmpl.Execute(&tplOutput, data)
 		if err != nil {

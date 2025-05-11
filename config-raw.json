@@ -124,6 +124,11 @@
                     "comment": "Allow using a custom logo via external URL."
                 },
                 {
+                    "key": "defaultnewtaskrelationkind",
+                    "default_value": "related",
+                    "comment": "Default relation kind when creating a related task. Options: subtask, parenttask, related, duplicates, blocking, blocked, precedes, follows, copiedfrom, copiedto."
+                },
+                {
                     "key": "enablepublicteams",
                     "default_value": "false",
                     "comment": "Enables the public team feature. If enabled, it is possible to configure teams to be public, which makes them\ndiscoverable when sharing a project, therefore not only showing teams the user is member of."

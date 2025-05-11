@@ -31,7 +31,7 @@ func (rel *TaskRelation) CanDelete(s *xorm.Session, a web.Auth) (bool, error) {
 // CanCreate checks if a user can create a new relation between two relations
 func (rel *TaskRelation) CanCreate(s *xorm.Session, a web.Auth) (bool, error) {
 	// Check if the relation kind is valid
-	if !rel.RelationKind.isValid() {
+	if !rel.RelationKind.IsValid() {
 		return false, ErrInvalidRelationKind{Kind: rel.RelationKind}
 	}
 

@@ -63,7 +63,7 @@ const (
  * task_id = 1".
  */
 
-func (rk RelationKind) isValid() bool {
+func (rk RelationKind) IsValid() bool {
 	return rk == RelationKindSubtask ||
 		rk == RelationKindParenttask ||
 		rk == RelationKindRelated ||
